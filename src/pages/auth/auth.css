@@ -1,0 +1,403 @@
+/* .auth-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  background-color: white;
+
+  .auth-form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+
+    h2 {
+      font-size: 24px;
+      color: #8a4baf;
+      margin-bottom: 15px;
+    }
+
+    form {
+      text-align: left;
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 14px;
+        color: #333;
+      }
+
+      input {
+        width: 92%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+    }
+  }
+} */
+
+/* auth.css */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap");
+
+:root {
+  /* New Color Palette: Deep Blues & Purples with Teal Accent */
+  --primary-color: #4a148c; /* Deep Purple */
+  --secondary-color: #6a1b9a; /* Medium Purple */
+  --accent-color: #00bfa5; /* Vibrant Teal */
+  --text-dark: #263238; /* Dark Grey Blue */
+  --text-light: #455a64; /* Medium Grey Blue */
+  --bg-light: #e0f2f7; /* Very Light Cyan */
+  --bg-gradient-start: #bbdefb; /* Light Blue */
+  --bg-gradient-end: #d1c4e9; /* Light Lavender */
+  --white-color: #ffffff;
+  --shadow-strong: 0 10px 30px rgba(0, 0, 0, 0.15);
+  --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.2);
+  --border-radius-large: 20px;
+  --border-radius-medium: 10px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+/* General Auth Page Layout */
+.auth-page {
+  display: flex;
+  flex-direction: column; /* Changed to column to allow padding-top to push content */
+  align-items: center;
+  justify-content: flex-start; /* Align content to start, then use padding/margin */
+  min-height: 100vh; /* Still fills viewport, but content is offset */
+  background: linear-gradient(
+    135deg,
+    var(--bg-gradient-start) 0%,
+    var(--bg-gradient-end) 100%
+  );
+  padding: 20px;
+  padding-top: 80px; /* Added padding-top to account for a hypothetical fixed header */
+  overflow-y: auto;
+  position: relative;
+}
+
+/* Adding subtle background elements for visual interest */
+.auth-page::before,
+.auth-page::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15); /* Slightly more opaque */
+  filter: blur(90px); /* Increased blur */
+  z-index: 0;
+}
+
+.auth-page::before {
+  width: 280px; /* Slightly larger */
+  height: 280px;
+  top: 5%; /* Adjusted position */
+  left: 8%;
+  animation: float1 15s infinite ease-in-out alternate;
+}
+
+.auth-page::after {
+  width: 330px; /* Slightly larger */
+  height: 330px;
+  bottom: 10%; /* Adjusted position */
+  right: 8%;
+  animation: float2 18s infinite ease-in-out alternate-reverse;
+}
+
+@keyframes float1 {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(25px, 35px);
+  } /* More movement */
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes float2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-30px, -20px);
+  } /* More movement */
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.auth-container {
+  background-color: var(--white-color);
+  padding: 50px;
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow-strong);
+  text-align: center;
+  width: 100%;
+  max-width: 480px;
+  animation: slideInUp 0.8s ease-out forwards;
+  position: relative;
+  z-index: 10;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px); /* Increased blur for frosted effect */
+  -webkit-backdrop-filter: blur(8px);
+  margin-top: auto; /* Vertically centers the box within the remaining space */
+  margin-bottom: auto; /* Vertically centers the box within the remaining space */
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header Styling */
+.auth-header {
+  margin-bottom: 35px;
+}
+
+.auth-header h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2.8rem;
+  color: var(--primary-color);
+  margin-bottom: 12px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.auth-header p {
+  font-size: 1.05rem;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+/* Form Styling */
+.auth-form-wrapper {
+  text-align: left;
+}
+
+.input-group {
+  margin-bottom: 25px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1px solid #e0e0e0;
+  border-radius: var(--border-radius-medium);
+  font-size: 1.05rem;
+  transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
+  background-color: #fafafa;
+  color: var(--text-dark);
+}
+
+input[type="email"]::placeholder,
+input[type="password"]::placeholder,
+input[type="text"]::placeholder,
+input[type="number"]::placeholder {
+  color: #bdbdbd;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="text"]:focus,
+input[type="number"]:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 4px rgba(0, 191, 165, 0.25); /* Adjusted shadow color for teal accent */
+  background-color: var(--white-color);
+}
+
+/* Button Styling */
+.common-btn {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: var(--border-radius-medium);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.3s ease;
+  font-weight: 700;
+  margin-top: 20px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  background: linear-gradient(
+    45deg,
+    var(--primary-color) 0%,
+    var(--secondary-color) 100%
+  );
+  color: var(--white-color);
+  box-shadow: 0 8px 20px rgba(74, 20, 140, 0.3); /* Adjusted shadow color */
+}
+
+.common-btn:hover {
+  background: linear-gradient(
+    45deg,
+    var(--secondary-color) 0%,
+    var(--accent-color) 100%
+  ); /* New gradient on hover */
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(106, 27, 154, 0.4); /* Adjusted hover shadow color */
+}
+
+.common-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(74, 20, 140, 0.2);
+}
+
+.common-btn:disabled {
+  background: #e0e0e0;
+  color: #a0a0a0;
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.8;
+  transform: none;
+}
+
+/* Links and Footer Text */
+.auth-links {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.link-text {
+  color: var(--text-light);
+  margin-bottom: 12px;
+}
+
+.link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s, text-decoration 0.3s;
+}
+
+.link:hover {
+  text-decoration: underline;
+  color: var(--accent-color);
+}
+
+.forgot-password {
+  margin-top: 15px;
+}
+
+/* Specific component styles (e.g., Verify Captcha) */
+.recaptcha-container {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+/* Media Queries for Responsiveness */
+
+/* Mobile devices (portrait and landscape) */
+@media (max-width: 767px) {
+  .auth-page {
+    padding: 15px;
+    padding-top: 60px; /* Reduced padding for smaller screens */
+  }
+
+  .auth-container {
+    padding: 30px 20px;
+    border-radius: 15px;
+    max-width: 95%;
+  }
+
+  .auth-header h2 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+  }
+
+  .auth-header p {
+    font-size: 0.9rem;
+  }
+
+  .input-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+  }
+
+  input[type="email"],
+  input[type="password"],
+  input[type="text"],
+  input[type="number"] {
+    padding: 12px 15px;
+    font-size: 0.95rem;
+  }
+
+  .common-btn {
+    padding: 12px;
+    font-size: 1.05rem;
+    margin-top: 15px;
+  }
+
+  .auth-links {
+    margin-top: 25px;
+    font-size: 0.85rem;
+  }
+
+  .recaptcha-container {
+    transform: scale(0.8);
+    margin: 20px 0;
+  }
+
+  .auth-page::before,
+  .auth-page::after {
+    width: 150px;
+    height: 150px;
+    filter: blur(50px);
+  }
+}
+
+/* Tablet devices (portrait and landscape) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .auth-container {
+    padding: 40px;
+    max-width: 450px;
+  }
+
+  .auth-header h2 {
+    font-size: 2.5rem;
+  }
+
+  .auth-header p {
+    font-size: 1rem;
+  }
+
+  .recaptcha-container {
+    transform: scale(0.9);
+  }
+}

@@ -1,0 +1,315 @@
+/* frontend/src/pages/QuizCategories.css */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap");
+
+:root {
+  /* Reusing colors from auth.css for consistency */
+  --primary-color: #4a148c; /* Deep Purple */
+  --secondary-color: #6a1b9a; /* Medium Purple */
+  --accent-color: #00bfa5; /* Vibrant Teal */
+  --text-dark: #263238; /* Dark Grey Blue */
+  --text-light: #455a64; /* Medium Grey Blue */
+  --bg-gradient-start: #bbdefb; /* Light Blue */
+  --bg-gradient-end: #d1c4e9; /* Light Lavender */
+  --white-color: #ffffff;
+  --shadow-strong: 0 10px 30px rgba(0, 0, 0, 0.15);
+  --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.2);
+  --border-radius-large: 20px;
+  --border-radius-medium: 10px;
+}
+
+/* Background for the entire page */
+body {
+  background: linear-gradient(
+    135deg,
+    var(--bg-gradient-start) 0%,
+    var(--bg-gradient-end) 100%
+  ) !important;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Adding subtle background elements for visual interest (similar to auth pages) */
+body::before,
+body::after {
+  content: "";
+  position: fixed; /* Use fixed to keep them in viewport during scroll */
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15); /* Slightly more opaque */
+  filter: blur(90px); /* Increased blur */
+  z-index: 0;
+}
+
+body::before {
+  width: 280px; /* Slightly larger */
+  height: 280px;
+  top: 5%; /* Adjusted position */
+  left: 8%;
+  animation: float1 15s infinite ease-in-out alternate;
+}
+
+body::after {
+  width: 330px; /* Slightly larger */
+  height: 330px;
+  bottom: 10%; /* Adjusted position */
+  right: 8%;
+  animation: float2 18s infinite ease-in-out alternate-reverse;
+}
+
+@keyframes float1 {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(25px, 35px);
+  } /* More movement */
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes float2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-30px, -20px);
+  } /* More movement */
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.quiz-categories-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: "Roboto", sans-serif; /* Consistent font */
+  color: var(--text-dark);
+  margin-top: 100px; /* Add margin-top to push content below fixed header */
+  position: relative;
+  z-index: 10; /* Ensure content is above background elements */
+}
+
+.quiz-categories-container h2 {
+  font-family: "Montserrat", sans-serif; /* Consistent font for headings */
+  text-align: center;
+  margin-bottom: 2.5rem;
+  font-size: 2.8rem; /* Larger font size */
+  color: var(--primary-color); /* Deep Purple */
+  font-weight: 700;
+  position: relative;
+  letter-spacing: -1px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05); /* Subtle text shadow */
+}
+
+.quiz-categories-container h2::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+  width: 100px; /* Wider underline */
+  height: 5px; /* Thicker underline */
+  background-color: var(--accent-color); /* Vibrant Teal */
+  border-radius: 3px;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  justify-content: center;
+}
+
+.category-card {
+  background-color: var(--white-color);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow-strong);
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 280px; /* Increased height for better visual balance */
+  border: 1px solid rgba(255, 255, 255, 0.5); /* Subtle white border */
+  backdrop-filter: blur(8px); /* Frosted glass effect */
+  -webkit-backdrop-filter: blur(8px); /* For Safari */
+}
+
+.category-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+}
+
+.category-icon {
+  font-size: 4rem; /* Larger icons */
+  margin-bottom: 1rem;
+  color: var(--accent-color); /* Teal icon color */
+  text-shadow: 2px 2px 5px rgba(0, 191, 165, 0.2); /* Subtle icon shadow */
+}
+
+.category-card h3 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2rem; /* Larger heading */
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+  font-weight: 700;
+}
+
+.category-card p {
+  font-size: 1.05rem;
+  color: var(--text-light);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+/* Styles for the round buttons container */
+.rounds-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+/* Styles for individual round buttons */
+.round-button {
+  padding: 0.8rem 1.3rem; /* Slightly more padding */
+  font-size: 1rem; /* Slightly larger font */
+  font-weight: 600;
+  border: none; /* No border for a cleaner look */
+  border-radius: var(--border-radius-medium);
+  background-color: #e1bee7; /* Light purple for uncompleted */
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+.round-button:hover:not(:disabled) {
+  background-color: #ce93d8; /* Slightly darker purple on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.12);
+}
+
+.round-button.completed {
+  background: linear-gradient(
+    45deg,
+    #28a745 0%,
+    #218838 100%
+  ); /* Green gradient for completed */
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 3px 8px rgba(40, 167, 69, 0.3);
+}
+
+.round-button.completed:hover:not(:disabled) {
+  background: linear-gradient(45deg, #218838 0%, #1e7e34 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(40, 167, 69, 0.4);
+}
+
+.round-button:disabled {
+  opacity: 0.5; /* More visible disabled state */
+  cursor: not-allowed;
+  background-color: #f0f0f0;
+  color: #999;
+  box-shadow: none;
+  transform: none;
+}
+
+.loading-message,
+.error-message,
+.no-categories-message {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--text-light);
+  margin-top: 50px;
+  background-color: var(--white-color);
+  padding: 2rem;
+  border-radius: var(--border-radius-medium);
+  box-shadow: var(--shadow-strong);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 10;
+}
+
+.error-message {
+  color: #e74c3c;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .quiz-categories-container {
+    padding: 1rem;
+    margin-top: 80px; /* Adjusted for mobile */
+  }
+
+  .quiz-categories-container h2 {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .categories-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .category-card {
+    padding: 1.5rem;
+    min-height: 250px;
+    border-radius: 15px;
+  }
+
+  .category-icon {
+    font-size: 3.5rem;
+  }
+
+  .category-card h3 {
+    font-size: 1.8rem;
+  }
+
+  .round-button {
+    padding: 0.7rem 1.1rem;
+    font-size: 0.9rem;
+  }
+
+  .loading-message,
+  .error-message,
+  .no-categories-message {
+    margin-top: 30px;
+    font-size: 1rem;
+    padding: 1.5rem;
+  }
+
+  body::before,
+  body::after {
+    width: 150px;
+    height: 150px;
+    filter: blur(50px);
+  }
+}
+
+@media (max-width: 480px) {
+  .quiz-categories-container h2 {
+    font-size: 1.8rem;
+  }
+  .category-card h3 {
+    font-size: 1.6rem;
+  }
+  .category-icon {
+    font-size: 3rem;
+  }
+  .round-button {
+    padding: 0.6rem 0.9rem;
+    font-size: 0.85rem;
+  }
+}

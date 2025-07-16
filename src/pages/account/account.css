@@ -1,0 +1,272 @@
+/* frontend/src/pages/account.css */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap");
+
+:root {
+  /* Reusing colors from auth.css for consistency */
+  --primary-color: #4a148c; /* Deep Purple */
+  --secondary-color: #6a1b9a; /* Medium Purple */
+  --accent-color: #00bfa5; /* Vibrant Teal */
+  --text-dark: #263238; /* Dark Grey Blue */
+  --text-light: #455a64; /* Medium Grey Blue */
+  --bg-gradient-start: #bbdefb; /* Light Blue */
+  --bg-gradient-end: #d1c4e9; /* Light Lavender */
+  --white-color: #ffffff;
+  --shadow-strong: 0 10px 30px rgba(0, 0, 0, 0.15);
+  --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.2);
+  --border-radius-large: 20px;
+  --border-radius-medium: 10px;
+  --danger-color: #e74c3c; /* Red for danger actions */
+  --danger-color-hover: #c0392b;
+}
+
+/* Global body styles for consistent background across pages */
+body {
+  background: linear-gradient(
+    135deg,
+    var(--bg-gradient-start) 0%,
+    var(--bg-gradient-end) 100%
+  ) !important;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  font-family: "Roboto", sans-serif;
+  color: var(--text-dark);
+}
+
+/* Animated background elements (similar to auth pages) */
+body::before,
+body::after {
+  content: "";
+  position: fixed; /* Use fixed to keep them in viewport during scroll */
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  filter: blur(90px);
+  z-index: 0;
+}
+
+body::before {
+  width: 280px;
+  height: 280px;
+  top: 5%;
+  left: 8%;
+  animation: float1 15s infinite ease-in-out alternate;
+}
+
+body::after {
+  width: 330px;
+  height: 330px;
+  bottom: 10%;
+  right: 8%;
+  animation: float2 18s infinite ease-in-out alternate-reverse;
+}
+
+@keyframes float1 {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(25px, 35px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes float2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-30px, -20px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Account Page Container */
+.account-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 60px); /* Adjust for header height if needed */
+  padding: 20px;
+  margin-top: 60px; /* Push content down to clear fixed header */
+  position: relative;
+  z-index: 10;
+}
+
+/* Profile Card Styling */
+.profile-card {
+  background-color: var(--white-color);
+  padding: 40px; /* Increased padding */
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow-strong);
+  width: 100%;
+  max-width: 450px; /* Max width for the card */
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.profile-card h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2.5rem; /* Larger heading */
+  color: var(--primary-color);
+  margin-bottom: 25px; /* More space below heading */
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.profile-card h2::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background-color: var(--accent-color);
+  border-radius: 2px;
+}
+
+.profile-info {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.profile-info p {
+  margin-bottom: 15px; /* More space between info lines */
+  color: var(--text-light);
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.profile-info strong {
+  color: var(--primary-color); /* Highlighted text */
+  font-weight: 600;
+}
+
+/* Buttons Styling (reusing common-btn from auth.css concept) */
+.common-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: var(--border-radius-medium);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.3s ease;
+  font-weight: 600;
+  margin-top: 15px; /* Space between buttons */
+  letter-spacing: 0.5px;
+  display: flex; /* For icon alignment */
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Space between icon and text */
+}
+
+.primary-btn {
+  background: linear-gradient(
+    45deg,
+    var(--primary-color) 0%,
+    var(--secondary-color) 100%
+  );
+  color: var(--white-color);
+  box-shadow: 0 4px 10px rgba(74, 20, 140, 0.3);
+}
+
+.primary-btn:hover {
+  background: linear-gradient(
+    45deg,
+    var(--secondary-color) 0%,
+    var(--accent-color) 100%
+  );
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(106, 27, 154, 0.4);
+}
+
+.danger-btn {
+  background-color: var(--danger-color); /* Red */
+  color: var(--white-color);
+  box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
+}
+
+.danger-btn:hover {
+  background-color: var(--danger-color-hover); /* Darker red */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(192, 57, 43, 0.4);
+}
+
+.common-btn:disabled {
+  background-color: #ccc;
+  color: #888;
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.7;
+  transform: none;
+}
+
+.button-icon {
+  font-size: 1.3rem; /* Size for react-icons */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .account-page-container {
+    padding: 15px;
+    margin-top: 60px; /* Adjust for mobile header */
+    min-height: calc(100vh - 60px);
+  }
+
+  .profile-card {
+    padding: 25px;
+    border-radius: 15px;
+    max-width: 95%; /* Adjust max-width for smaller screens */
+  }
+
+  .profile-card h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .profile-info p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  .common-btn {
+    padding: 10px;
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+
+  .button-icon {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-card {
+    padding: 20px;
+  }
+  .profile-card h2 {
+    font-size: 1.8rem;
+  }
+}

@@ -1,0 +1,347 @@
+/* .course-card {
+  background-color: #fff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 250px;
+  transition: 0.5s;
+
+  &:hover {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+  }
+
+  .course-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+
+  h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+  }
+}
+
+--- courseCard.css --- */
+
+/* frontend/src/components/coursecard/courseCard.css */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap");
+
+:root {
+  /* Reusing colors from auth.css for consistency */
+  --primary-color: #4a148c; /* Deep Purple */
+  --secondary-color: #6a1b9a; /* Medium Purple */
+  --accent-color: #00bfa5; /* Vibrant Teal */
+  --text-dark: #263238; /* Dark Grey Blue */
+  --text-light: #455a64; /* Medium Grey Blue */
+  --white-color: #ffffff;
+  --shadow-strong: 0 10px 30px rgba(0, 0, 0, 0.15);
+  --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.2);
+  --border-radius-large: 20px;
+  --border-radius-medium: 10px;
+
+  /* Specific colors for CourseCard buttons */
+  --study-btn-color-start: #28a745; /* Green */
+  --study-btn-color-end: #218838;
+  --get-started-btn-color-start: #007bff; /* Blue */
+  --get-started-btn-color-end: #0056b3;
+  --delete-btn-color-start: #dc3545; /* Red */
+  --delete-btn-color-end: #c82333;
+  --secondary-btn-color: #6c757d; /* Grey for cancel */
+}
+
+.course-card-item {
+  /* Changed background-color to a very light, subtle blue */
+  background-color: #f0f8ff; /* AliceBlue - a very light blue */
+  border-radius: var(--border-radius-medium);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Occupy full grid column */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #e0e0e0; /* Subtle border */
+  min-width: 280px; /* Ensure a minimum width for grid items */
+  max-width: 320px; /* Max width to prevent cards from becoming too wide in flex/grid */
+  margin: 0 auto; /* Center cards if grid doesn't fill row */
+}
+
+.course-card-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.course-card-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}
+
+.course-card-content {
+  padding: 1.2rem;
+  text-align: left;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.course-card-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.3rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  line-height: 1.4;
+  min-height: 2.8em; /* Ensure consistent height for titles */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  -webkit-box-orient: vertical;
+}
+
+.course-card-instructor,
+.course-card-duration {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin-bottom: 0.3rem;
+}
+
+.course-card-price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  margin-top: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+/* Common Button Styles for CourseCard */
+.common-btn {
+  display: block; /* Make buttons take full width */
+  width: 100%;
+  padding: 0.8rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: var(--border-radius-medium);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+  margin-top: 0.8rem; /* Space between buttons */
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.study-btn {
+  background: linear-gradient(
+    45deg,
+    var(--study-btn-color-start) 0%,
+    var(--study-btn-color-end) 100%
+  );
+  color: var(--white-color);
+  box-shadow: 0 4px 10px rgba(40, 167, 69, 0.2);
+}
+
+.study-btn:hover {
+  background: linear-gradient(
+    45deg,
+    var(--study-btn-color-end) 0%,
+    #1e7e34 100%
+  );
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(40, 167, 69, 0.3);
+}
+
+.get-started-btn {
+  background: linear-gradient(
+    45deg,
+    var(--get-started-btn-color-start) 0%,
+    var(--get-started-btn-color-end) 100%
+  );
+  color: var(--white-color);
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+}
+
+.get-started-btn:hover {
+  background: linear-gradient(
+    45deg,
+    var(--get-started-btn-color-end) 0%,
+    #004085 100%
+  );
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 123, 255, 0.3);
+}
+
+.delete-btn {
+  background: linear-gradient(
+    45deg,
+    var(--delete-btn-color-start) 0%,
+    var(--delete-btn-color-end) 100%
+  );
+  color: var(--white-color);
+  box-shadow: 0 4px 10px rgba(220, 53, 69, 0.2);
+}
+
+.delete-btn:hover {
+  background: linear-gradient(
+    45deg,
+    var(--delete-btn-color-end) 0%,
+    #a71d2a 100%
+  );
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(220, 53, 69, 0.3);
+}
+
+.common-btn:disabled {
+  background-color: #ccc;
+  color: #888;
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.7;
+  transform: none;
+}
+
+/* Confirmation Modal Styles */
+.confirmation-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Darker overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's on top of everything */
+}
+
+.confirmation-modal-content {
+  background-color: var(--white-color);
+  padding: 30px;
+  border-radius: var(--border-radius-medium);
+  box-shadow: var(--shadow-strong);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  animation: fadeInScale 0.3s ease-out;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.confirmation-modal-content h3 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+}
+
+.confirmation-modal-content p {
+  font-size: 1rem;
+  color: var(--text-dark);
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* Space between modal buttons */
+}
+
+.modal-actions .common-btn {
+  width: auto; /* Allow buttons to size to content */
+  flex-grow: 1; /* Distribute space evenly */
+  max-width: 150px;
+  padding: 10px 15px;
+  font-size: 0.95rem;
+}
+
+.secondary-btn {
+  background-color: var(--secondary-btn-color); /* Grey */
+  color: var(--white-color);
+  box-shadow: 0 4px 10px rgba(108, 117, 125, 0.2);
+}
+
+.secondary-btn:hover {
+  background-color: #5a6268;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(108, 117, 125, 0.3);
+}
+
+/* Responsive adjustments for CourseCard */
+@media (max-width: 768px) {
+  .course-card-item {
+    border-radius: 10px;
+    min-width: unset; /* Remove min-width for smaller screens */
+    max-width: 100%;
+  }
+  .course-card-image {
+    height: 160px;
+  }
+  .course-card-content {
+    padding: 1rem;
+  }
+  .course-card-title {
+    font-size: 1.2rem;
+  }
+  .course-card-instructor,
+  .course-card-duration,
+  .course-card-price {
+    font-size: 0.9rem;
+  }
+  .common-btn {
+    padding: 0.7rem 0.8rem;
+    font-size: 0.9rem;
+  }
+  .confirmation-modal-content {
+    padding: 20px;
+  }
+  .confirmation-modal-content h3 {
+    font-size: 1.5rem;
+  }
+  .confirmation-modal-content p {
+    font-size: 0.9rem;
+  }
+  .modal-actions {
+    flex-direction: column; /* Stack buttons vertically in modal */
+    gap: 10px;
+  }
+  .modal-actions .common-btn {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .course-card-image {
+    height: 140px;
+  }
+  .course-card-title {
+    font-size: 1.1rem;
+  }
+  .course-card-price {
+    font-size: 1rem;
+  }
+}
