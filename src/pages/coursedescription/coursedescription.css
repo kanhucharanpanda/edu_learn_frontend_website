@@ -133,8 +133,10 @@ body::after {
 }
 
 .course-image {
-  width: 250px; /* Larger image */
-  height: 180px;
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  aspect-ratio: 16/9; /* Maintain consistent aspect ratio */
   object-fit: cover;
   border-radius: var(--border-radius-medium);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -287,7 +289,7 @@ body::after {
   
   .course-image {
     width: 100%;
-    max-width: 300px;
+    max-width: 280px;
     height: auto;
     aspect-ratio: 16/9;
   }
@@ -358,8 +360,10 @@ body::after {
   }
   
   .course-image {
-    max-width: 280px;
+    max-width: 240px;
+    width: 100%;
     height: auto;
+    aspect-ratio: 16/9;
     border-radius: var(--border-radius-small);
   }
   
@@ -424,14 +428,14 @@ body::after {
   }
   
   .course-image {
-    max-width: 100%;
+    max-width: 200px;
     width: 100%;
     height: auto;
     aspect-ratio: 16/9;
   }
   
   .course-info-details h2 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     line-height: 1.2;
     margin-bottom: 12px;
   }
@@ -478,8 +482,15 @@ body::after {
     border-radius: 10px;
   }
   
+  .course-image {
+    max-width: 180px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+  }
+  
   .course-info-details h2 {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
   
   .course-info-details p {
@@ -517,9 +528,11 @@ body::after {
   }
   
   .course-image {
-    width: 200px;
-    height: 120px;
+    width: 160px;
+    height: 90px;
+    max-width: 160px;
     object-fit: cover;
+    aspect-ratio: 16/9;
   }
   
   .course-info-details {
@@ -527,7 +540,7 @@ body::after {
   }
   
   .course-info-details h2 {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
   
   .common-btn {
