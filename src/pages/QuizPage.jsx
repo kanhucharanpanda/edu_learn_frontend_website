@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./QuizPage.css"; // Import the CSS for styling
 import BackButton from "../components/backbutton/Backbutton";
+import { server } from "../main";
+
 
 const QuizPage = () => {
   const { category, roundNumber } = useParams(); // Get category and round from URL params
@@ -32,7 +34,7 @@ const QuizPage = () => {
         }
 
         const response = await fetch(
-          `/api/quiz/${category}/${roundNumber}/questions`,
+          `${server}/api/quiz/${category}/${roundNumber}/questions`,
           {
             method: "GET",
             headers: {
@@ -101,7 +103,7 @@ const QuizPage = () => {
         return;
       }
 
-      const response = await fetch("/api/quiz/submit", {
+      const response = await fetch(`${server}/api/quiz/submit`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
