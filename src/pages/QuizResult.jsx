@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import "./QuizResult.css"; // Import the CSS for styling
 import BackButton from "../components/backbutton/Backbutton";
+import { server } from "../main";
 
 const QuizResult = () => {
   const { category, roundNumber } = useParams(); // Get category and round from URL params
@@ -34,7 +35,7 @@ const QuizResult = () => {
         }
 
         const response = await fetch(
-          `/api/quiz/${category}/${roundNumber}/results`,
+          `${server}/api/quiz/${category}/${roundNumber}/results`,
           {
             method: "GET",
             headers: {
