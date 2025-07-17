@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import "./QuizCategories.css"; // Import the CSS for styling
 import BackButton from "../components/backbutton/Backbutton";
 
+const server = "https://edu-learn-server-website.onrender.com";
+
 const QuizCategories = () => {
   const [categories, setCategories] = useState([]);
   // Store user progress: { category: [completedRoundNumbers] }
@@ -32,7 +34,7 @@ const QuizCategories = () => {
         }
 
         // 1. Fetch all available quiz categories
-        const categoriesResponse = await fetch("/api/quiz/categories", {
+        const categoriesResponse = await fetch(`${server}/api/quiz/categories`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -49,7 +51,7 @@ const QuizCategories = () => {
 
         // 2. For each category, fetch the user's completed rounds
         const progressPromises = categoriesData.categories.map(async (cat) => {
-          const progressResponse = await fetch(`/api/quiz/${cat}/progress`, {
+          const progressResponse = await fetch(`${server}/api/quiz/${cat}/progress`, {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
