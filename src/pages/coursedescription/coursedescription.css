@@ -12,17 +12,19 @@
   --white-color: #ffffff;
   --shadow-strong: 0 10px 30px rgba(0, 0, 0, 0.15);
   --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.2);
+  --shadow-mobile: 0 5px 15px rgba(0, 0, 0, 0.1);
   --border-radius-large: 20px;
   --border-radius-medium: 10px;
+  --border-radius-small: 8px;
 }
 
 /* Global body styles for consistent background across pages */
 body {
   background: linear-gradient(
-      135deg,
-      var(--bg-gradient-start) 0%,
-      var(--bg-gradient-end) 100%
-    ) !important;
+    135deg,
+    var(--bg-gradient-start) 0%,
+    var(--bg-gradient-end) 100%
+  ) !important;
   min-height: 100vh;
   margin: 0;
   padding: 0;
@@ -137,6 +139,11 @@ body::after {
   border-radius: var(--border-radius-medium);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   flex-shrink: 0; /* Prevent image from shrinking */
+  transition: transform 0.3s ease;
+}
+
+.course-image:hover {
+  transform: scale(1.02);
 }
 
 .course-info-details {
@@ -151,6 +158,7 @@ body::after {
   font-weight: 700;
   letter-spacing: -1px;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+  line-height: 1.2;
 }
 
 .course-info-details p {
@@ -169,6 +177,10 @@ body::after {
   font-weight: 700;
   color: var(--accent-color) !important; /* Teal for price */
   margin-top: 15px !important;
+  padding: 8px 12px;
+  background: rgba(0, 191, 165, 0.1);
+  border-radius: var(--border-radius-small);
+  display: inline-block;
 }
 
 .course-full-description {
@@ -239,209 +251,344 @@ body::after {
   transform: none;
 }
 
-/* ------------------------------------------- */
-/* Responsive adjustments with enhanced mobile styles */
-/* ------------------------------------------- */
+/* Enhanced Mobile Responsive Design */
 
-/* Tablets and larger phones (e.g., 768px to 991px) */
-@media (max-width: 991px) {
+/* Large tablets and small desktops */
+@media (max-width: 1200px) {
+  .course-description-card {
+    max-width: 800px;
+    padding: 35px;
+  }
+  
+  .course-info-details h2 {
+    font-size: 2.5rem;
+  }
+}
+
+/* Tablets */
+@media (max-width: 992px) {
+  .course-description-page-container {
+    padding: 15px;
+    padding-top: 90px;
+  }
+  
   .course-description-card {
     padding: 30px;
-    max-width: 700px; /* Slightly narrower for tablets */
+    max-width: 750px;
+    border-radius: 15px;
   }
+  
   .course-header-section {
     flex-direction: column;
     text-align: center;
     gap: 20px;
-    margin-bottom: 25px;
+    align-items: center;
   }
+  
   .course-image {
-    width: 90%; /* Wider image on tablets */
-    max-width: 350px; /* Limit max width */
+    width: 100%;
+    max-width: 300px;
     height: auto;
+    aspect-ratio: 16/9;
   }
+  
   .course-info-details {
     width: 100%;
+    text-align: center;
   }
+  
   .course-info-details h2 {
-    font-size: 2.4rem; /* Adjusted for tablets */
+    font-size: 2.2rem;
   }
+  
   .course-info-details p {
-    font-size: 1.05rem;
-  }
-  .course-price {
-    font-size: 1.3rem !important;
-  }
-  .course-full-description h3 {
-    font-size: 1.7rem;
-  }
-  .course-full-description p {
     font-size: 1rem;
   }
-  .common-btn {
-    padding: 11px 22px;
-    font-size: 1.05rem;
-  }
-}
-
-/* Mobile devices (e.g., 481px to 767px) */
-@media (max-width: 767px) {
-  .course-description-page-container {
-    padding: 15px;
-    padding-top: 70px; /* More space from top for smaller screens */
-    align-items: center; /* Center card vertically if content is short */
-  }
-  .course-description-card {
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: var(--shadow-strong); /* Keep strong shadow */
-  }
-  .course-header-section {
-    flex-direction: column; /* Stack image and info */
-    text-align: center;
-    gap: 15px;
-    margin-bottom: 20px;
-  }
-  .course-image {
-    width: 100%; /* Image takes full width of card */
-    max-width: 280px; /* Cap size for very wide phones */
-    height: auto;
-    border-radius: var(--border-radius-medium);
-    margin-bottom: 10px; /* Space below image */
-  }
-  .course-info-details h2 {
-    font-size: 2rem; /* Smaller heading for mobile */
-    line-height: 1.2;
-  }
-  .course-info-details p {
-    font-size: 0.95rem; /* Slightly smaller text */
-    margin: 6px 0;
-  }
+  
   .course-price {
     font-size: 1.2rem !important;
-    margin-top: 10px !important;
+    margin-top: 20px !important;
   }
+  
   .course-full-description {
-    margin-bottom: 25px;
+    text-align: left;
   }
+  
   .course-full-description h3 {
-    font-size: 1.5rem;
-    margin-bottom: 12px;
+    font-size: 1.6rem;
+    text-align: center;
   }
+  
   .course-full-description p {
-    font-size: 0.9rem;
-    line-height: 1.6;
-  }
-  .common-btn {
-    width: 100%; /* Full width button on mobile */
-    padding: 10px 15px;
     font-size: 1rem;
-    margin-top: 20px;
   }
 }
 
-/* Smaller mobile devices (e.g., up to 480px, typically portrait mode) */
-@media (max-width: 480px) {
-  body::before,
-  body::after {
-    filter: blur(60px); /* Less blur for less powerful devices */
+/* Small tablets and large phones */
+@media (max-width: 768px) {
+  body::before {
     width: 200px;
     height: 200px;
-  }
-  body::before {
     top: 10%;
     left: 5%;
   }
+  
   body::after {
-    bottom: 5%;
+    width: 250px;
+    height: 250px;
+    bottom: 15%;
     right: 5%;
   }
-
+  
   .course-description-page-container {
-    padding: 10px;
-    padding-top: 60px; /* Minimal padding from top */
+    padding: 12px;
+    padding-top: 80px;
   }
+  
   .course-description-card {
-    padding: 20px;
-    border-radius: 10px; /* Slightly smaller border radius */
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: var(--shadow-mobile);
   }
+  
   .course-header-section {
-    gap: 10px;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+  }
+  
+  .course-image {
+    max-width: 280px;
+    height: auto;
+    border-radius: var(--border-radius-small);
+  }
+  
+  .course-info-details h2 {
+    font-size: 1.8rem;
+    line-height: 1.1;
     margin-bottom: 15px;
   }
-  .course-image {
-    max-width: 200px; /* Keep image from becoming too large */
-    margin-bottom: 8px;
-  }
-  .course-info-details h2 {
-    font-size: 1.7rem; /* Even smaller for very small screens */
-  }
+  
   .course-info-details p {
-    font-size: 0.85rem;
-    margin: 4px 0;
+    font-size: 0.95rem;
+    margin: 6px 0;
   }
+  
   .course-price {
     font-size: 1.1rem !important;
-    margin-top: 8px !important;
+    padding: 6px 10px;
+    margin-top: 15px !important;
   }
+  
+  .course-full-description {
+    margin-bottom: 25px;
+  }
+  
   .course-full-description h3 {
-    font-size: 1.3rem;
-    margin-bottom: 10px;
+    font-size: 1.4rem;
+    margin-bottom: 12px;
   }
+  
   .course-full-description p {
-    font-size: 0.85rem;
-    line-height: 1.5;
+    font-size: 0.95rem;
+    line-height: 1.6;
   }
+  
   .common-btn {
-    padding: 8px 12px;
-    font-size: 0.9rem;
-    min-width: unset; /* Remove min-width for very small screens */
+    padding: 12px 20px;
+    font-size: 1rem;
+    min-width: 160px;
+    width: 100%;
+    max-width: 300px;
+    margin: 20px auto 0;
+    display: block;
   }
 }
 
-/* Landscape mode for small phones */
-@media (max-width: 767px) and (orientation: landscape) {
+/* Mobile phones */
+@media (max-width: 480px) {
   .course-description-page-container {
-    padding-top: 30px; /* Reduce top padding significantly */
+    padding: 8px;
+    padding-top: 70px;
   }
+  
   .course-description-card {
-    display: flex;
-    flex-direction: row; /* Layout content side-by-side */
-    flex-wrap: wrap; /* Allow wrapping */
-    align-items: flex-start;
-    gap: 20px;
     padding: 20px;
+    border-radius: 12px;
+    margin: 0;
   }
+  
+  .course-header-section {
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  
+  .course-image {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+  }
+  
+  .course-info-details h2 {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  
+  .course-info-details p {
+    font-size: 0.9rem;
+    margin: 5px 0;
+  }
+  
+  .course-price {
+    font-size: 1rem !important;
+    padding: 5px 8px;
+    margin-top: 12px !important;
+  }
+  
+  .course-full-description h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .course-full-description p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  
+  .common-btn {
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    min-width: 140px;
+    width: 100%;
+    letter-spacing: 0.3px;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 360px) {
+  .course-description-page-container {
+    padding: 5px;
+    padding-top: 60px;
+  }
+  
+  .course-description-card {
+    padding: 15px;
+    border-radius: 10px;
+  }
+  
+  .course-info-details h2 {
+    font-size: 1.3rem;
+  }
+  
+  .course-info-details p {
+    font-size: 0.85rem;
+  }
+  
+  .course-price {
+    font-size: 0.95rem !important;
+  }
+  
+  .course-full-description h3 {
+    font-size: 1.1rem;
+  }
+  
+  .course-full-description p {
+    font-size: 0.85rem;
+  }
+  
+  .common-btn {
+    padding: 8px 15px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Landscape orientation for mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .course-description-page-container {
+    padding-top: 60px;
+  }
+  
   .course-header-section {
     flex-direction: row;
     text-align: left;
-    align-items: center;
-    width: 100%; /* Take full width */
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: none;
+    gap: 20px;
   }
+  
   .course-image {
-    width: 150px; /* Smaller image in landscape */
-    height: 100px;
-    margin-bottom: 0;
+    width: 200px;
+    height: 120px;
+    object-fit: cover;
   }
+  
   .course-info-details {
-    flex-grow: 1;
+    text-align: left;
   }
+  
   .course-info-details h2 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
-  .course-info-details p {
-    font-size: 0.9rem;
-  }
-  .course-full-description {
-    width: 100%; /* Description takes full width */
-    margin-top: 15px;
-    margin-bottom: 20px;
-  }
+  
   .common-btn {
-    width: auto; /* Buttons can be auto width again */
-    min-width: 150px;
+    width: auto;
+    min-width: 180px;
+    display: inline-flex;
+    margin: 15px 0 0 0;
+  }
+}
+
+/* Touch-friendly improvements */
+@media (pointer: coarse) {
+  .common-btn {
+    padding: 14px 25px;
+    font-size: 1rem;
+    min-height: 44px; /* Minimum touch target size */
+  }
+  
+  .course-image {
+    cursor: pointer;
+  }
+}
+
+/* Dark mode support for mobile */
+@media (prefers-color-scheme: dark) {
+  .course-description-card {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  body::after {
+    animation: none;
+  }
+  
+  .course-description-card {
+    animation: none;
+  }
+  
+  .course-image {
+    transition: none;
+  }
+  
+  .common-btn {
+    transition: background-color 0.3s ease;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .course-description-card {
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .course-price {
+    background: rgba(0, 191, 165, 0.2);
+    border: 1px solid var(--accent-color);
   }
 }
