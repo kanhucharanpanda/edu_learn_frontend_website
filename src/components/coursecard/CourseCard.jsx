@@ -99,7 +99,7 @@ import "./courseCard.css";
 // IMPORTANT: For deployment, this 'server' variable should be dynamically set
 // based on your deployed backend URL (e.g., from an environment variable).
 // Hardcoding 'localhost' will only work locally.
-const server = "http://localhost:5000";
+const server = "https://edu-learn-frontend-website.vercel.app";
 
 const CourseCard = ({ course }) => {
   const navigate = useNavigate();
