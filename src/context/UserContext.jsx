@@ -4,7 +4,7 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 
 const UserContext = createContext();
-const server = "http://localhost:5000";
+const server = "https://edu-learn-server-website.onrender.com";
 export const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState([]);
   const [isAuth, setIsAuth] = useState(false);
