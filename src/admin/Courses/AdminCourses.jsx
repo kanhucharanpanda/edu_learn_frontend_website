@@ -12,7 +12,7 @@ import axios from "axios";
 // IMPORTANT: For deployment, this 'server' variable should be dynamically set
 // based on your deployed backend URL (e.g., from an environment variable).
 // Hardcoding 'localhost' will only work locally.
-const server = "http://localhost:5000";
+const server = "https://edu-learn-server-website.onrender.com";
 
 const categories = [
   "Web Development",
