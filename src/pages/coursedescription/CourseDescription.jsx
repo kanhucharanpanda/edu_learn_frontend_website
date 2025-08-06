@@ -1,29 +1,30 @@
-
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { CourseData } from "../../context/CourseContext";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { UserData } from "../../context/UserContext";
 import Loading from "../../components/loading/Loading";
+import "./coursedescription.css";
 
-// IMPORTANT: For deployment, this 'server' variable should be dynamically set
-// based on your deployed backend URL (e.g., from an environment variable).
-// Hardcoding 'localhost' will only work locally.
-const server = "https://edu-learn-server-website.onrender.com";
+// --- FIX: Use the environment variable for the server URL ---
+const server = import.meta.env.VITE_API_URL;
 
 const CourseDescription = ({ user }) => {
   const params = useParams();
   const navigate = useNavigate();
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true); // Set initial loading to true
 
   const { fetchUser } = UserData();
   const { fetchCourse, course, fetchCourses, fetchMyCourse } = CourseData();
 
+  // Stabilize fetchCourse with useCallback
+  const stableFetchCourse = useCallback(fetchCourse, []);
+
   useEffect(() => {
-    fetchCourse(params.id);
-  }, [params.id, fetchCourse]); // Added params.id and fetchCourse to dependencies
+    stableFetchCourse(params.id).finally(() => setLoading(false));
+  }, [params.id, stableFetchCourse]);
 
   const checkoutHandler = async () => {
     const token = localStorage.getItem("token");
@@ -43,12 +44,12 @@ const CourseDescription = ({ user }) => {
       );
 
       const options = {
-        key: "rzp_test_jB23Sn1nsTlY7h", // Enter the Key ID generated from the Dashboard
-        amount: order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        key: "rzp_test_jB23Sn1nsTlY7h", // Replace with your actual Razorpay Key ID
+        amount: order.amount,
         currency: "INR",
-        name: "EduLearn", // your business name
+        name: "EduLearn",
         description: "Learn with us",
-        order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        order_id: order.id,
         handler: async function (response) {
           const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
             response;
@@ -82,7 +83,7 @@ const CourseDescription = ({ user }) => {
           }
         },
         theme: {
-          color: "#4A148C", // Deep Purple from new theme
+          color: "#4A148C",
         },
       };
       const razorpay = new window.Razorpay(options);
@@ -101,21 +102,18 @@ const CourseDescription = ({ user }) => {
         <Loading />
       ) : (
         <div className="course-description-page-container">
-          {" "}
-          {/* New wrapper for consistent background */}
           {course && (
             <div className="course-description-card">
-              {" "}
-              {/* Main content card */}
               <div className="course-header-section">
+                {/* --- FIX: Use course.image.url for the image source --- */}
                 <img
-                  src={`${server}/${course.image}`}
+                  src={course.image.url}
                   alt={course.title}
                   className="course-image"
                   onError={(e) => {
                     e.target.onerror = null;
                     e.target.src = `https://placehold.co/200x150/E0E0E0/4A148C?text=Course+Image`;
-                  }} // Fallback image
+                  }}
                 />
                 <div className="course-info-details">
                   <h2>{course.title}</h2>
