@@ -1,5 +1,4 @@
 
-
 import React, { useEffect, useState } from "react";
 import "./lecture.css";
 import { useNavigate, useParams } from "react-router-dom";
@@ -138,11 +137,11 @@ const Lecture = ({ user }) => {
 
     myForm.append("title", title);
     myForm.append("description", description);
-    myForm.append("file", video); // 'video' is the actual file object
+    myForm.append("video", video); // 'video' is the actual file object
 
     try {
       const { data } = await axios.post(
-        `${server}/api/course/${params.id}`,
+        `${server}/api/admin/course/${params.id}/lecture`,
         myForm,
         {
           headers: {
@@ -181,7 +180,7 @@ const Lecture = ({ user }) => {
 
     try {
       const { data } = await axios.delete(
-        `${server}/api/lecture/${deletingLectureId}`,
+        `${server}/api/admin/lecture/${deletingLectureId}`,
         {
           headers: {
             token: localStorage.getItem("token"),
@@ -267,6 +266,8 @@ const Lecture = ({ user }) => {
     return progressEntry && progressEntry.completedLectures.includes(lectureId);
   };
 
+  console.log("Lecture data for video player:", currentLecture);
+
   return (
     <>
       <div className="lecture-page-container">
@@ -303,7 +304,7 @@ const Lecture = ({ user }) => {
                     <>
                       <video
                         key={currentLecture._id} // Key to force re-render when lecture changes
-                        src={`${server}/${currentLecture.video}`}
+                        src={currentLecture.video.url}
                         className="lecture-video-player"
                         controls
                         controlsList="nodownload noremoteplayback"
