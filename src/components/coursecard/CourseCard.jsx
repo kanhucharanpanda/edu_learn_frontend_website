@@ -33,7 +33,7 @@ const CourseCard = ({ course }) => {
 
     try {
       const { data } = await axios.delete(
-        `${server}/api/course/${deletingCourseId}`,
+        `${server}/api/admin/course/${deletingCourseId}`,
         {
           headers: {
             token: localStorage.getItem("token"),
@@ -57,10 +57,13 @@ const CourseCard = ({ course }) => {
   };
 
   // Fallback image in case the course.image URL is broken
-  const imageUrl = course.image
-    ? `${server}/${course.image}`
-    : `https://placehold.co/300x200/E0E0E0/4A148C?text=Course+Image`;
+  // const imageUrl = course.image
+  //   ? `${server}/${course.image}`
+  //   : `https://placehold.co/300x200/E0E0E0/4A148C?text=Course+Image`;
 
+  const imageUrl = course.image
+    ? course.image.url
+    : `https://placehold.co/300x200/E0E0E0/4A148C?text=Course+Image`;
   return (
     <div className="course-card-item">
       <img
