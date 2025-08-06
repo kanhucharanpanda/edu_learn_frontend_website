@@ -1,5 +1,4 @@
 
-
 import React, { useState } from "react";
 import Layout from "../Utils/Layout"; // Assuming Layout component exists
 import { useNavigate } from "react-router-dom";
@@ -44,6 +43,7 @@ const AdminCourses = ({ user }) => {
   const [image, setImage] = useState("");
   const [imagePrev, setImagePrev] = useState("");
   const [btnLoading, setBtnLoading] = useState(false);
+  const [level, setLevel] = useState("Beginner"); // Set a default value
 
   const changeImageHandler = (e) => {
     const file = e.target.files[0];
@@ -71,15 +71,20 @@ const AdminCourses = ({ user }) => {
     myForm.append("price", price);
     myForm.append("createdBy", createdBy);
     myForm.append("duration", duration);
-    myForm.append("file", image);
+    myForm.append("image", image);
+    myForm.append("level", level);
 
     try {
-      const { data } = await axios.post(`${server}/api/course/new`, myForm, {
-        headers: {
-          token: localStorage.getItem("token"),
-          "Content-Type": "multipart/form-data", // Important for FormData
-        },
-      });
+      const { data } = await axios.post(
+        `${server}/api/admin/course/new`,
+        myForm,
+        {
+          headers: {
+            token: localStorage.getItem("token"),
+            "Content-Type": "multipart/form-data", // Important for FormData
+          },
+        }
+      );
 
       toast.success(data.message);
       setBtnLoading(false);
@@ -191,7 +196,19 @@ const AdminCourses = ({ user }) => {
                     ))}
                   </select>
                 </div>
-
+                <div className="form-group">
+                  <label htmlFor="level">Level</label>
+                  <select
+                    id="level"
+                    value={level}
+                    onChange={(e) => setLevel(e.target.value)}
+                    required
+                  >
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                  </select>
+                </div>
                 <div className="form-group">
                   <label htmlFor="duration">Duration (weeks)</label>
                   <input
