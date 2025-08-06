@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./QuizCategories.css"; // Import the CSS for styling
 import BackButton from "../components/backbutton/Backbutton";
 
-const server = "http://localhost:5000";
+const server = "https://edu-learn-server-website.onrender.com";
 
 const QuizCategories = () => {
   const [categories, setCategories] = useState([]);
