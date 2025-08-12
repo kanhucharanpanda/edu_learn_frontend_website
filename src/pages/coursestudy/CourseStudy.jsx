@@ -91,7 +91,7 @@ const CourseStudy = ({ user }) => {
           {" "}
           {/* Main content card */}
           <img
-            src={`${server}/${course.image}`}
+            src={`${server}/${course.image.url}`}
             alt={course.title}
             className="course-study-image"
             onError={(e) => {
