@@ -44,7 +44,7 @@ const Footer = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/newsletter/subscribe",
+        "https://edu-learn-server-website.onrender.com/api/newsletter/subscribe",
         {
           method: "POST",
           headers: {
