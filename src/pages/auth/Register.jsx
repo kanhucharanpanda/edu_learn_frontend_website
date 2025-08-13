@@ -1,9 +1,9 @@
-
-/* Register.jsx */
 import React, { useState } from "react";
 import "./auth.css";
 import { Link, useNavigate } from "react-router-dom";
 import { UserData } from "../../context/UserContext";
+// 1. Import the icons
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -11,6 +11,9 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+
+  // 2. Add state for password visibility
+  const [showPassword, setShowPassword] = useState(false);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -50,16 +53,26 @@ const Register = () => {
               />
             </div>
 
-            <div className="input-group">
+            {/* 3. Add a wrapper and class for styling */}
+            <div className="input-group password-group">
               <label htmlFor="password">Password</label>
               <input
-                type="password"
+                // 4. Set the input type dynamically
+                type={showPassword ? "text" : "password"}
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 placeholder="Create a strong password"
               />
+              {/* 5. Add the toggle button */}
+              <button
+                type="button"
+                className="show-password-btn"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+              </button>
             </div>
 
             <button
