@@ -30,7 +30,7 @@ const AdminDashbord = ({ user }) => {
     try {
       setLoading(true);
       setError(null);
-      const { data } = await axios.get(`${server}/api/stats`, {
+      const { data } = await axios.get(`${server}/api/admin/stats`, {
         headers: {
           token: localStorage.getItem("token"),
         },
