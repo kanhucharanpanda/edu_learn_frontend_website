@@ -13,6 +13,7 @@ import {
   AiOutlineCheckCircle,
   AiOutlineCloseCircle,
 } from "react-icons/ai";
+import { Link } from "react-router-dom"; // Import Link for navigation
 
 const Footer = () => {
   const [email, setEmail] = useState("");
@@ -43,7 +44,7 @@ const Footer = () => {
 
     try {
       const response = await fetch(
-        "https://edu-learn-server-website.onrender.com/api/newsletter/subscribe",
+        "http://localhost:5000/api/newsletter/subscribe",
         {
           method: "POST",
           headers: {
@@ -115,13 +116,13 @@ const Footer = () => {
             <h4>Quick Links</h4>
             <ul className="footer-links">
               <li>
-                <a href="/courses">All Courses</a>
+                <Link to="/courses">All Courses</Link>
               </li>
               <li>
-                <a href="/about">About Us</a>
+                <Link to="/about">About Us</Link>
               </li>
               <li>
-                <a href="/contact">Contact</a>
+                <Link to="/contact">Contact</Link>
               </li>
             </ul>
           </div>
@@ -131,19 +132,23 @@ const Footer = () => {
             <h4>Support</h4>
             <ul className="footer-links">
               <li>
-                <a href="/help">Help Center</a>
+                <Link to="/help">Help Center</Link>
               </li>
               <li>
-                <a href="/faq">FAQ</a>
+                <Link to="/faq">FAQ</Link>
               </li>
               <li>
-                <a href="/terms">Terms of Service</a>
+                <Link to="/terms">Terms of Service</Link>
               </li>
               <li>
-                <a href="/privacy">Privacy Policy</a>
+                <Link to="/privacy">Privacy Policy</Link>
               </li>
               <li>
-                <a href="/accessibility">Accessibility</a>
+                <Link to="/accessibility">Accessibility</Link>
+              </li>
+              {/* --- NEW UNSUBSCRIBE LINK ADDED HERE --- */}
+              <li>
+                <Link to="/unsubscribe">Unsubscribe</Link>
               </li>
             </ul>
           </div>
