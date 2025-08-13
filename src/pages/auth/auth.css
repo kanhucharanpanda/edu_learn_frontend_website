@@ -1,45 +1,3 @@
-/* .auth-page {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 80vh;
-  background-color: white;
-
-  .auth-form {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 300px;
-
-    h2 {
-      font-size: 24px;
-      color: #8a4baf;
-      margin-bottom: 15px;
-    }
-
-    form {
-      text-align: left;
-
-      label {
-        display: block;
-        margin-bottom: 5px;
-        font-size: 14px;
-        color: #333;
-      }
-
-      input {
-        width: 92%;
-        padding: 10px;
-        margin-bottom: 15px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-      }
-    }
-  }
-} */
-
 /* auth.css */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap");
 
@@ -233,6 +191,37 @@ input[type="number"]:focus {
   border-color: var(--accent-color);
   box-shadow: 0 0 0 4px rgba(0, 191, 165, 0.25); /* Adjusted shadow color for teal accent */
   background-color: var(--white-color);
+}
+
+/* --- NEW: Show/Hide Password Button Styles --- */
+.password-group {
+  position: relative;
+}
+
+.password-group input[type="password"],
+.password-group input[type="text"] {
+  padding-right: 50px; /* Make space for the icon button */
+}
+
+.show-password-btn {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(50%); /* Align with the input field */
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem; /* Slightly larger icon */
+  color: #9e9e9e; /* Lighter gray for the icon */
+  transition: color 0.3s ease;
+}
+
+.show-password-btn:hover {
+  color: var(--primary-color); /* Use theme color on hover */
 }
 
 /* Button Styling */
