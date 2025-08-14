@@ -213,7 +213,7 @@ const Footer = () => {
                 <AiFillTwitterSquare />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/kanhu_charan_45?igsh=ZnA5YjA1bzltaHNi"
                 aria-label="Instagram"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -221,7 +221,7 @@ const Footer = () => {
                 <AiFillInstagram />
               </a>
               <a
-                href="https://linkedin.com"
+                href="www.linkedin.com/in/kanhu-charan-panda-a103782ba"
                 aria-label="LinkedIn"
                 target="_blank"
                 rel="noopener noreferrer"
