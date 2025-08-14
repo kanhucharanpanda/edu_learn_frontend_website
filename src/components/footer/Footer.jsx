@@ -221,7 +221,7 @@ const Footer = () => {
                 <AiFillInstagram />
               </a>
               <a
-                href="www.linkedin.com/in/kanhu-charan-panda-a103782ba"
+                href="https://www.linkedin.com/in/kanhu-charan-panda-a103782ba"
                 aria-label="LinkedIn"
                 target="_blank"
                 rel="noopener noreferrer"
